@@ -1,24 +1,26 @@
+# require 'rspec'
+# require './lib/deck'
+# require './lib/card'
 require 'spec_helper'
 
 RSpec.describe Deck do
+  # describe '#initialize' do
   before(:each) do
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
     @card4 = Card.new(:club, '2', 2)
-    @cards = [@card1, @card2, @card3]
-    @deck = Deck.new(@cards)
+    @array_of_cards = [@card1, @card2, @card3]
+    @deck = Deck.new(@array_of_cards)
+  end
+  it 'exists' do
+    expect(@deck).to be_an_instance_of(Deck)
   end
 
-  describe '#initialize' do
-    it 'exists' do
-      expect(@deck).to be_an_instance_of(Deck)
-    end
-
-    it 'has cards' do
-      expect(@deck.cards).to eq([@card1, @card2, @card3])
-    end
+  it 'has cards' do
+    expect(@deck.cards).to eq([@card1, @card2, @card3])
   end
+  # end
 
   describe '#rank_of_card_at' do
     it 'returns the rank of the card at a given index' do
@@ -64,7 +66,7 @@ RSpec.describe Deck do
       @deck.cards.each do |card|
         expect(card).to be_a Card
       end
-      expect(@deck.add_card(@card4)).to eq(@cards)
+      expect(@deck.add_card(@card4)).to eq(@array_of_cards)
       @deck.cards.each do |card|
         expect(card).to be_a Card
       end
